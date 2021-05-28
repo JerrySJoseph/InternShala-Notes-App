@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.DashBoard.DashBoardFragment">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/actionbar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <LinearLayout
+                android:layout_marginTop="?attr/actionBarSize"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:paddingLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello "
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jerin!"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textStyle="bold"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+                </LinearLayout>
+                <TextView
+                    android:paddingLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:text="Welcome to Internshala Notes App"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edittext"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:drawableLeft="@android:drawable/ic_menu_search"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:hint="Search notes here..."
+                    android:drawablePadding="10dp"/>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_launcher"
+                        app:civ_border_width="2dp"
+                        android:layout_centerVertical="true"
+
+                        app:civ_border_color="?attr/colorOnPrimary"
+                        android:layout_alignParentLeft="true"/>
+
+                    <ImageView
+                        android:id="@+id/signOut"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_signout"
+                        android:layout_centerVertical="true"
+                        app:tint="?attr/colorOnPrimary"
+                        android:layout_marginRight="15dp"
+                        android:layout_alignParentRight="true" />
+
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="?attr/colorPrimary"
+        >
+
+
+            <LinearLayout
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:minHeight="1500dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_notes_container"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explore Notes"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+                <include layout="@layout/item_notes"/>
+
+
+
+            </LinearLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
