@@ -12,8 +12,25 @@ Design and develop a simple Notes Android app, which has the following features:
 
 ## Final prototype
 <p align="center">
-  <img width="auto" height="auto" alt="parallel processing" src="gifs/backgroundTaskManager2.gif">
+  <img width="auto" height="auto" alt="parallel processing" src="gifs/feature-gif.gif">
 </p>
+
+## Features
+
+1. MVVM architecture.
+2. Repository Pattern.
+3. Modular design (User management module)
+4. Clean and minimal UI design.
+5. Provision to include Network requests when required.
+6. One time sign-in using Google Sign In API.
+8. Ability to search across title and contents
+9. Mark note as important.
+
+## APK
+
+Please find the signed apk file of this app [here](https://github.com/JerrySJoseph/InternShala-Notes-App/tree/master/app/release)
+
+
 License
 -------
 
