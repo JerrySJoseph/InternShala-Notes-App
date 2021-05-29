@@ -19,7 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragment {
+abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragment<VM> {
 
 
 

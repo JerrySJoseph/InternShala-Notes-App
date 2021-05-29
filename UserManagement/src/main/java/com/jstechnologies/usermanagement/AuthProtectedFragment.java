@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-abstract public class AuthProtectedFragment<VM extends ViewModel> extends BaseAuthFragment {
+abstract public class AuthProtectedFragment<VM extends ViewModel> extends BaseAuthFragment<VM> {
 
     protected abstract void onSignOut();
 

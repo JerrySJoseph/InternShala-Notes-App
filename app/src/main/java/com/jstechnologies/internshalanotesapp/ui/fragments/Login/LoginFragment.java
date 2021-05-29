@@ -17,6 +17,7 @@ import com.jstechnologies.internshalanotesapp.R;
 import com.jstechnologies.internshalanotesapp.ui.fragments.DashBoard.DashBoardFragment;
 import com.jstechnologies.usermanagement.AuthFragment;
 import com.jstechnologies.usermanagement.User;
+import com.jstechnologies.usermanagement.UserManagement;
 
 public class LoginFragment extends AuthFragment<LoginViewModel> implements View.OnClickListener {
 
@@ -36,7 +37,7 @@ public class LoginFragment extends AuthFragment<LoginViewModel> implements View.
 
     @Override
     protected void onSignInSuccess(User user) {
-        Toast.makeText(this.getContext(),user.getName(),Toast.LENGTH_SHORT).show();
+       showToast("Welcome "+user.getName()+"!");
         navigateTo(R.id.fragment_container_view,new DashBoardFragment());
     }
 
@@ -52,8 +53,9 @@ public class LoginFragment extends AuthFragment<LoginViewModel> implements View.
         }
     }
 
+
     @Override
-    protected ViewModel createViewModel() {
+    protected LoginViewModel createViewModel() {
         return null;
     }
 

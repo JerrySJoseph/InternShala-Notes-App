@@ -8,7 +8,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        >
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             app:title="Add Notes"
@@ -17,6 +18,83 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        app:layout_anchor="@id/toolbar_layout"
+        app:layout_anchorGravity="bottom"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            tools:context=".UI.Views.Album.AddAlbumActivity">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Add a title "
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+            <EditText
+                android:id="@+id/et_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Add content of this note"
+                android:lines="15"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:gravity="top|left"/>
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:text="Is this important?"/>
+                <Switch
+                    android:id="@+id/sw_isimportant"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/saveBtn"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_rounded_filled"
+                android:minHeight="50dp"
+                android:text="SAVE Note"
+                android:textColor="?attr/colorOnPrimary"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

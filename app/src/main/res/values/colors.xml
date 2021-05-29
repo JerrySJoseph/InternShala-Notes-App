@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- custom colors -->
+    <color name="color_Orange">#FF9500</color>
     <color name="color_blue">#008BDC</color>
+    <color name="color_blue_highlight">#d1fbff</color>
     <color name="color_black">#000000</color>
     <color name="color_dark_grey">#616161</color>
     <color name="color_light_grey">#c6c6c6</color>
@@ -17,4 +19,8 @@
     <color name="color_green">#00d72f</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_red">#EF9B14</color>
+    <color name="colorItemSelectedBlue">#d6eaff</color>
+    <color name="colorItemSelectedGreen">#d6ffdd</color>
+    <color name="colorItemSelectedRed">#ffbbb8</color>
+    <color name="colorItemSelectedOrange">#ffe3bd</color>
 </resources>
