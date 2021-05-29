@@ -74,6 +74,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow">
 
@@ -120,7 +121,7 @@
             <LinearLayout
                 android:layout_marginTop="40dp"
                 android:orientation="vertical"
-                android:minHeight="1500dp"
+                android:minHeight="1000dp"
                 android:layout_width="match_parent"
                 android:background="@drawable/bg_notes_container"
                 android:layout_height="match_parent">
@@ -129,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Explore Notes"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler"
                     android:background="?attr/colorSurface"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.jstechnologies.internshalanotesapp.R;
 import com.jstechnologies.internshalanotesapp.ui.fragments.Login.LoginFragment;
+import com.jstechnologies.internshalanotesapp.ui.fragments.splashScreen.SplashScreen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstance==null){
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_view, LoginFragment.class,savedInstance)
+                    .add(R.id.fragment_container_view, new SplashScreen())
                     .commit();
         }
     }
