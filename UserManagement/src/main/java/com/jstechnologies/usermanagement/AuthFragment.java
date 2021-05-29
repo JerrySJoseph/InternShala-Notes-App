@@ -19,13 +19,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+/*Base fragment for authentication. extend this fragment when need to implement authentication flow*/
 abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragment<VM> {
 
+    private static int RC_SIGN_IN=108; //Request Code
 
-
-    private static int RC_SIGN_IN=108;
-
-    GoogleSignInAccount account;
+    GoogleSignInAccount account;    //Google Account
 
     String TAG="User Management".concat(getClass().getName());
 
@@ -39,6 +38,7 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
 
     }
 
+    //Abstract method to pass auth results to UI
     protected abstract void onSignInSuccess(User user);
     protected abstract void onSignInFailed(String reason);
 
@@ -54,6 +54,8 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
             startActivityForResult(signInIntent, RC_SIGN_IN);
 
     }
+
+    //handle response from Auth flow
     private void handleGoogleSignInResult(@NonNull GoogleSignInAccount account) {
             User user=new User(account.getId(),account.getDisplayName(),account.getEmail(),account.getPhotoUrl().toString());
             UserManagement.getInstance(this.getContext()).setUser(user);

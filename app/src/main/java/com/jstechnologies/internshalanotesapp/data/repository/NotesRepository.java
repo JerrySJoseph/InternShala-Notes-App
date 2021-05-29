@@ -6,16 +6,21 @@ import androidx.lifecycle.MutableLiveData;
 import com.jstechnologies.internshalanotesapp.data.api.LocalNotesApi;
 import com.jstechnologies.internshalanotesapp.data.models.Note;
 import com.jstechnologies.internshalanotesapp.utils.ApiCallback;
-import com.jstechnologies.internshalanotesapp.utils.RepositoryCallback;
 
 import java.util.List;
 
+/*
+* NotesRepository acts as a primary data-source for UI components.
+* This provides observable LiveData which can be easily updated to
+* push the new data whenever necessary. This controls the data-flow
+* from Local and Network data-source to UI components thus introducing
+* a level of abstraction.
+* */
 public class NotesRepository {
 
-
     private static NotesRepository mInstance;
-    private MutableLiveData<String> repositoryMessage;
-    private MutableLiveData<List<Note>> notesLiveData;
+    private MutableLiveData<String> repositoryMessage;  //LiveData for pushing new messages
+    private MutableLiveData<List<Note>> notesLiveData;  //LiveData for pushing new notes
 
     public static synchronized NotesRepository getInstance(){
         if(mInstance==null)
@@ -36,10 +41,12 @@ public class NotesRepository {
         return notesLiveData;
     }
 
+    //Push a custom message
     public void pushMessage(String message){
         this.repositoryMessage.setValue(message);
     }
 
+    //get all notes
     public void getAll(){
         LocalNotesApi.getInstance().fetchAll(new ApiCallback<Note>() {
             @Override
@@ -53,6 +60,8 @@ public class NotesRepository {
             }
         });
     }
+
+    //insert
     public void insert(Note note){
         LocalNotesApi.getInstance().insert(note, new ApiCallback<Note>() {
             @Override
@@ -66,6 +75,8 @@ public class NotesRepository {
             }
         });
     }
+
+    //delete
     public void delete(int id){
         LocalNotesApi.getInstance().deleteNote(id, new ApiCallback<Note>() {
             @Override
@@ -79,6 +90,8 @@ public class NotesRepository {
             }
         });
     }
+
+    //update
     public void update(Note note){
         LocalNotesApi.getInstance().updateNote(note, new ApiCallback<Note>() {
             @Override

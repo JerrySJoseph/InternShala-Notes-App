@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+/*Base fragment for protected Fragment. extend this fragment when need to implement authentication protection*/
 abstract public class AuthProtectedFragment<VM extends ViewModel> extends BaseAuthFragment<VM> {
 
-    protected abstract void onSignOut();
+    protected abstract void onSignOut(); //called after successful signout
 
+    //global sign out method to sign out a user
     protected void signOut(){
         UserManagement.getInstance(this.getContext()).signOut(new OnCompleteListener<Void>() {
             @Override

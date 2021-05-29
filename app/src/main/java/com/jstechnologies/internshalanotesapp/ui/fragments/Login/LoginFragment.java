@@ -19,7 +19,9 @@ import com.jstechnologies.usermanagement.AuthFragment;
 import com.jstechnologies.usermanagement.User;
 import com.jstechnologies.usermanagement.UserManagement;
 
-public class LoginFragment extends AuthFragment<LoginViewModel> implements View.OnClickListener {
+/*Login Fragment to implement Auth flow.
+* Extends base AuthFragment class to implement auth-flow behind the scenes*/
+public class LoginFragment extends AuthFragment implements View.OnClickListener {
 
 
 
@@ -38,24 +40,24 @@ public class LoginFragment extends AuthFragment<LoginViewModel> implements View.
     @Override
     protected void onSignInSuccess(User user) {
        showToast("Welcome "+user.getName()+"!");
-        navigateTo(R.id.fragment_container_view,new DashBoardFragment());
+       navigateTo(R.id.fragment_container_view,new DashBoardFragment()); //navigate to dashboard on Successful login
     }
 
     @Override
     protected void onSignInFailed(String reason) {
-        Toast.makeText(this.getContext(),reason,Toast.LENGTH_SHORT).show();
+        showToast(reason);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.gSign:signInWithGoogle();break;
+            case R.id.gSign:signInWithGoogle();break;  //sign in with google on button click
         }
     }
 
 
     @Override
-    protected LoginViewModel createViewModel() {
+    protected ViewModel createViewModel() {
         return null;
     }
 

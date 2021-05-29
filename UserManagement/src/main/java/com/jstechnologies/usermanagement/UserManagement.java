@@ -12,6 +12,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+
+/*Main EntryPoint to this module. This is a singleton class created to implement single line sign in and signout for users*/
 public class UserManagement {
 
     private Context mContext;
@@ -21,16 +23,18 @@ public class UserManagement {
     GoogleSignInOptions gso =null;
     GoogleSignInClient mGoogleSignInClient;
 
-
+    //Initialize the UserManagement Engine by pasing clientID and ClientSecret provided by Google
     public static void Init(String clientID, String clientSecret){
         CLIENT_ID=clientID;
         CLIENT_SECRET=clientSecret;
     }
 
+    //Default constructor, should not be used to create object of this class
     private UserManagement(Context context){
         this.mContext=context;
     }
 
+    //Right method to spawn object of this class
     public static synchronized UserManagement getInstance(Context context){
         if(CLIENT_ID==null || CLIENT_SECRET==null)
             throw new NullPointerException("Make sure you have initialized User Management System using init() method");
@@ -47,7 +51,7 @@ public class UserManagement {
         return CLIENT_SECRET;
     }
 
-
+    //create a GoogleSignInClient object if not exists
     public GoogleSignInClient getmGoogleSignInClient() {
         if(mGoogleSignInClient==null)
             mGoogleSignInClient=GoogleSignIn.getClient(mContext,getGso());
@@ -57,6 +61,8 @@ public class UserManagement {
     public GoogleSignInAccount getAccount() {
         return GoogleSignIn.getLastSignedInAccount(mContext);
     }
+
+    //GSO - Google Sign In Options specifies all the set of data we require ( Email, phone, name, etc.)
     public GoogleSignInOptions getGso() {
         String clientID=UserManagement.getInstance(mContext).getClientId();
 
@@ -78,6 +84,7 @@ public class UserManagement {
         this.user = user;
     }
 
+    //Signout the user
     public void signOut(OnCompleteListener<Void> callback){
         getmGoogleSignInClient().signOut().addOnCompleteListener(callback);
     }

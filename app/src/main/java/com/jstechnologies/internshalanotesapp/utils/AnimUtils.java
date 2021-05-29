@@ -6,6 +6,8 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
 public class AnimUtils {
+
+    /*Util to expand any view*/
     public static void expand(final View v) {
         v.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         final int targtetHeight = v.getMeasuredHeight();
@@ -32,6 +34,8 @@ public class AnimUtils {
         v.startAnimation(a);
     }
 
+
+    /*Util to collapse any view*/
     public static void collapse(final View v) {
         final int initialHeight = v.getMeasuredHeight();
 

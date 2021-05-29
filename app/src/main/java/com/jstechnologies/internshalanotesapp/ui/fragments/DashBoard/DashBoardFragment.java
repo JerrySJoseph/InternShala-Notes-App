@@ -38,16 +38,17 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
+/*DashBoard Fragment to display notes and user data after successful sign In*/
 public class DashBoardFragment extends AuthProtectedFragment<DashBoardViewModel> implements View.OnClickListener ,NotesAdapter.OnNoteItemClick {
 
-    CircleImageView avatar;
-    TextView name;
-    AlertDialog.Builder alert;
-    DashBoardViewModel vm;
-    RecyclerView recyclerView;
-    NotesAdapter adapter;
-    TextInputEditText search;
+    CircleImageView avatar;     //profile image
+    TextView name;              //name
+    AlertDialog.Builder alert;  //Instance of alert dialog
+    RecyclerView recyclerView;  //recyclerVIew for displaying list of notes
+    NotesAdapter adapter;       //Notes adapter for recyclerView
+    TextInputEditText search;   //Search bar
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class DashBoardFragment extends AuthProtectedFragment<DashBoardViewModel>
         updateUI();
     }
 
+    //Observe changes in searchbox
     TextWatcher textWatcher= new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -133,12 +135,14 @@ public class DashBoardFragment extends AuthProtectedFragment<DashBoardViewModel>
         alert.show();
     }
 
+    /*Create View model for this fragment*/
     @Override
     protected DashBoardViewModel createViewModel() {
         DashBoardViewModelFactory viewModelFactory= new DashBoardViewModelFactory(NotesRepository.getInstance());
         return new ViewModelProvider(this,viewModelFactory).get(DashBoardViewModel.class);
     }
 
+    /*implementing observables*/
     @Override
     protected void observe() {
         viewmodel.getAllNotes().observe(this, new Observer<List<Note>>() {

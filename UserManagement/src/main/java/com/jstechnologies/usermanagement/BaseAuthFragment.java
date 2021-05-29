@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
+/*Base fragment for authentication and auth protection. Implements some basic Viewmodel creation*/
 abstract public class BaseAuthFragment<VM extends ViewModel> extends Fragment {
 
     protected VM viewmodel;

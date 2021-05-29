@@ -32,12 +32,15 @@ public class AddNotesFragment extends AuthProtectedFragment<AddNoteViewModel> im
     Switch isImportant;
     EditText title,content;
     Note note=new Note();
+
+    /*Create View model for this fragment*/
     @Override
     protected AddNoteViewModel createViewModel() {
         AddNoteViewModelFactory viewModelFactory= new AddNoteViewModelFactory(NotesRepository.getInstance());
         return new ViewModelProvider(this,viewModelFactory).get(AddNoteViewModel.class);
     }
 
+    /*implementing observables*/
     @Override
     protected void observe() {
         viewmodel.getMessage().observe(this,(message)->showToast(message));
@@ -85,7 +88,7 @@ public class AddNotesFragment extends AuthProtectedFragment<AddNoteViewModel> im
         content.setText(note.getNotecontent());
         isImportant.setChecked(note.isImportant());
     }
-
+    //Save or update
     void saveOrUpdate(){
 
         note.setTitle(title.getText().toString().trim());

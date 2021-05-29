@@ -1,7 +1,6 @@
 package com.jstechnologies.usermanagement;
 
-import java.util.Objects;
-
+//Demo User class
 public class User {
     String id;
     String name;

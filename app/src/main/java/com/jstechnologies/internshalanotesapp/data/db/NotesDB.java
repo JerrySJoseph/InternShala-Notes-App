@@ -15,12 +15,20 @@ import com.jstechnologies.usermanagement.UserManagement;
 
 import java.util.List;
 
+/*
+Actual Database Class facilitating I/O operations. This class is also singleton
+as creating multiple instances of the same class can potentially result in memory
+leaks.
+*/
 @Database(entities = Note.class ,exportSchema = false, version = 1)
 abstract public class NotesDB extends RoomDatabase {
 
     private static String DB_NAME="notes_app_local_db";
+
+    /*Creating a singleton*/
     private static NotesDB mInstance;
     private static Context mContext;
+
     public static synchronized NotesDB getInstance(Context context){
         if(mInstance==null)
         {
@@ -29,10 +37,14 @@ abstract public class NotesDB extends RoomDatabase {
         }
         return mInstance;
     }
+
+    //Instance of DAO for I/O
     protected abstract NotesDao notesDao();
 
+    //reads all notes from database and pass to callback
     public void getAll(ApiCallback<Note> mCallBack)
     {
+        //Creating a new custom singleThread Database Executor to run this process in background
         new DatabaseExecutor().execute(() -> {
             try{
                 List<Note> models=notesDao().fetchAllNotes(UserManagement.getInstance(mContext).getUser().getId());
@@ -45,7 +57,10 @@ abstract public class NotesDB extends RoomDatabase {
         });
     }
 
+    //update an existing note
     public void update(Note note,ApiCallback<Note> callback){
+
+        //Creating a new custom singleThread Database Executor to run this process in background
         new DatabaseExecutor().execute(() -> {
             try{
                 notesDao().updateNote(note);
@@ -57,7 +72,11 @@ abstract public class NotesDB extends RoomDatabase {
             }
         });
     }
+
+    //insert a new note to the database
     public void insert(Note note,ApiCallback<Note> callback){
+
+        //Creating a new custom singleThread Database Executor to run this process in background
         new DatabaseExecutor().execute(() -> {
             try{
                 notesDao().insertNote(note);
@@ -68,7 +87,11 @@ abstract public class NotesDB extends RoomDatabase {
             }
         });
     }
+
+    //delete an existing note
     public void delete(int id,ApiCallback<Note> callback){
+
+        //Creating a new custom singleThread Database Executor to run this process in background
         new DatabaseExecutor().execute(() -> {
             try{
                 notesDao().deleteNote(id);

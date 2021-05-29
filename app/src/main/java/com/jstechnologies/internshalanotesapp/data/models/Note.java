@@ -7,8 +7,20 @@ import androidx.room.PrimaryKey;
 import com.jstechnologies.usermanagement.UserManagement;
 
 import java.io.Serializable;
-import java.util.Objects;
 
+/*
+-----------------------------------------------------------------
+* Note Model:
+* This is the schema of a typical note object.
+* id: int (Primary Key) -> Unique number
+* noteContent : String -> Content of the note
+* datetime: long -> for storing current timestamp
+* priority: int -> priority of the note on a scale of (1-5)
+* isImportant :int -> true if the note is important or otherwise
+*-----------------------------------------------------------------
+* TableName= data_notes
+*
+*/
 @Entity(tableName = "data_notes")
 public class Note implements Serializable {
 

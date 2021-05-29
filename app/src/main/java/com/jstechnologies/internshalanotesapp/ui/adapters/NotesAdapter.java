@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/*
+* NotesAdapter: An adapter class for Note Items
+* */
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder> {
 
     List<Note> models;
@@ -28,11 +32,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
         models=new ArrayList<>();
     }
 
+    //pushing new models
     public void setModels(List<Note> models) {
         this.models = models;
         notifyDataSetChanged();
     }
 
+    //Item click listener for RecyclerView Item
     public void setOnNoteItemClickListener(OnNoteItemClick onNoteItemClick) {
         this.onNoteItemClick = onNoteItemClick;
     }
@@ -53,6 +59,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
         return models.size();
     }
 
+    //ViewHolder
     protected class NotesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title,content,date,delete,edit;
         ImageView expand,important;
@@ -71,6 +78,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
             edit=itemView.findViewById(R.id.edit);
 
         }
+
+        //bind the data to View
         void bind(Note note){
 
             int resId=note.isImportant()?R.drawable.ic_star_filled:R.drawable.ic_star;
@@ -82,6 +91,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
             delete.setOnClickListener(this::onClick);
             edit.setOnClickListener(this::onClick);
         }
+
+        //Toggle the options menu
         void toggleExpandCollapse(){
             if(isExpanded)
             {
@@ -106,6 +117,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
         }
     }
 
+    /*An interface to implement onItemClick inside recyclerView*/
     public interface OnNoteItemClick{
         void onDeleteClick(int id);
         void onEditClick(Note note);
