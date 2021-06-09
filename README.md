@@ -1,5 +1,5 @@
 # Internshala Assessment
-This is an assignment for the post of SDE-intern in internshala
+This is an assignment for the post of SDE in internshala
 
 ## Problem Statement
 Design and develop a simple Notes Android app, which has the following features:
