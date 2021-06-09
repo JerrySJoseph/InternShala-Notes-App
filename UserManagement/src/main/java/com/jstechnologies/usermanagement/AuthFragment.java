@@ -93,7 +93,7 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
     ActivityResultLauncher<Intent> launcher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            if(result.getResultCode()==Activity.RESULT_OK){
+
                 try {
                     Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
                     handleGoogleSignInResult(task.getResult(ApiException.class));
@@ -102,7 +102,7 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
                     Log.w(TAG, "handleSignInResult:error", e);
                     onSignInFailed(e.getMessage());
                 }
-            }
+
         }
     });
 
