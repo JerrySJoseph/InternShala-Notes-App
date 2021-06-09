@@ -2,5 +2,6 @@
     <string name="app_name">InternShala Notes App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="CLIENT_ID">518136382026-dr1ovv7hrnvkb09teda54liocflvkimo.apps.googleusercontent.com</string>
     <string name="notes_desc">Want to read about what its like to interview at Google? Check out this users post to read about a fellow LeetCoders experience! Friendly reminder to join us for the May LeetCoding Challenge to earn LeetCoins! Happy LeetCoding! </string>
 </resources>

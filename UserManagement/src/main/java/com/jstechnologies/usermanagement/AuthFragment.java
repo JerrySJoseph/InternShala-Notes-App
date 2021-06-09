@@ -70,10 +70,8 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
         public void onActivityResult(ActivityResult result) {
             if(result.getResultCode()==Activity.RESULT_OK){
                 try {
-
-                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
-                        handleGoogleSignInResult(task.getResult(ApiException.class));
-
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                    handleGoogleSignInResult(task.getResult(ApiException.class));
                 }catch (Exception e)
                 {
                     Log.w(TAG, "handleSignInResult:error", e);

@@ -17,9 +17,8 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance=this;
-
         //intialiizing user management engine
         //updated and included client id (private)
-        UserManagement.Init("518136382026-dr1ovv7hrnvkb09teda54liocflvkimo.apps.googleusercontent.com","YOUR_CLIENT_SECRET");
+        UserManagement.Init(getString(R.string.CLIENT_ID),"YOUR_CLIENT_SECRET");
     }
 }
