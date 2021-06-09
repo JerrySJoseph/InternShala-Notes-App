@@ -19,6 +19,6 @@ public class MyApp extends Application {
         mInstance=this;
 
         //intialiizing user management engine
-        UserManagement.Init("YOUR_CLIENT_ID","YOUR_CLIENT_SECRET");
+        UserManagement.Init("518136382026-dr1ovv7hrnvkb09teda54liocflvkimo.apps.googleusercontent.com","YOUR_CLIENT_SECRET");
     }
 }

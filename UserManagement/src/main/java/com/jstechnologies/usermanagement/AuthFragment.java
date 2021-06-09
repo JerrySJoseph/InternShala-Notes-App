@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +39,6 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
         if(account!=null && !account.isExpired()){
             handleGoogleSignInResult(account);
         }
-
     }
 
     //Abstract method to pass auth results to UI
@@ -51,7 +54,7 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
             return;
         }
             Intent signInIntent = UserManagement.getInstance(this.getContext()).getmGoogleSignInClient().getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN);
+            launcher.launch(signInIntent);
 
     }
 
@@ -62,21 +65,23 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
             onSignInSuccess(user);
     }
 
+    ActivityResultLauncher<Intent> launcher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if(result.getResultCode()==Activity.RESULT_OK){
+                try {
 
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                        handleGoogleSignInResult(task.getResult(ApiException.class));
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            if (requestCode == RC_SIGN_IN && resultCode== Activity.RESULT_OK) {
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                handleGoogleSignInResult(task.getResult(ApiException.class));
+                }catch (Exception e)
+                {
+                    Log.w(TAG, "handleSignInResult:error", e);
+                    onSignInFailed(e.getMessage());
+                }
             }
-        }catch (Exception e)
-        {
-            Log.w(TAG, "handleSignInResult:error", e);
-            onSignInFailed(e.getMessage());
         }
+    });
 
-    }
+
 }
