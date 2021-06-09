@@ -21,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 /*Base fragment for authentication. extend this fragment when need to implement authentication flow*/
@@ -33,12 +34,36 @@ abstract public class AuthFragment<VM extends ViewModel> extends BaseAuthFragmen
     String TAG="User Management".concat(getClass().getName());
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        account= UserManagement.getInstance(this.getContext()).getAccount();
+    public void onStart() {
+        super.onStart();
+        account=GoogleSignIn.getLastSignedInAccount(this.getContext());
         if(account!=null && !account.isExpired()){
             handleGoogleSignInResult(account);
+            return;
         }
+      /*  UserManagement.getInstance(this.getContext()).getmGoogleSignInClient().silentSignIn().addOnCompleteListener(new OnCompleteListener<GoogleSignInAccount>() {
+            @Override
+            public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                if(task.isComplete()){
+                    try {
+                        account=task.getResult(ApiException.class);
+                        if(account!=null || !account.isExpired()){
+                            handleGoogleSignInResult(account);
+                        }
+                    } catch (ApiException e) {
+                        e.printStackTrace();
+                        onSignInFailed(e.getMessage());
+                    }
+                }
+            }
+        });*/
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
     }
 
     //Abstract method to pass auth results to UI
